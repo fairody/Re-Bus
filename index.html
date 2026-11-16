@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Re:Bus — река + автобус (Москва)</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand">
+          <div class="brand__title">Re:Bus</div>
+          <div class="brand__subtitle">Единая платформа бесшовных поездок «река + автобус» (Москва)</div>
+        </div>
+        <div class="status">
+          <div class="status__label">Обновление данных</div>
+          <div id="statusClock" class="status__value">—</div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="panel">
+          <div class="panel__block">
+            <div class="panel__title">Планировщик поездок</div>
+            <div id="pointA" class="pointCard pointCard--empty">
+              <div class="pointCard__label">Откуда</div>
+              <div id="pointAAddress" class="pointCard__address">Кликните на карту</div>
+            </div>
+            <div id="pointB" class="pointCard pointCard--empty">
+              <div class="pointCard__label">Куда</div>
+              <div id="pointBAddress" class="pointCard__address">Затем выберите вторую точку</div>
+            </div>
+            <div class="actions">
+              <button id="buildBtn" class="btn btn--primary">Построить маршрут</button>
+              <button id="resetBtn" class="btn btn--ghost">Сброс</button>
+            </div>
+            <div class="hint">
+              Кликните на карту: сначала выберите точку отправления, затем точку назначения.
+            </div>
+          </div>
+
+          <div class="panel__block">
+            <div class="panel__title">Оптимальный маршрут</div>
+            <div id="routeSummary" class="routeSummary routeSummary--empty">
+              Поставьте точки A и B на карте, затем нажмите «Построить маршрут».
+            </div>
+          </div>
+
+          <div class="panel__block">
+            <div class="panel__title">Ближайшие отправления</div>
+            <div class="twoCol">
+              <div>
+                <div class="miniTitle">Речной транспорт</div>
+                <div id="riverBoard" class="board board--empty">—</div>
+              </div>
+              <div>
+                <div class="miniTitle">Автобусы</div>
+                <div id="busBoard" class="board board--empty">—</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mapWrap">
+          <div id="map" class="map" aria-label="Карта Re:Bus"></div>
+          <div class="legend">
+            <div class="legend__row"><span class="dot dot--pointA"></span> Откуда</div>
+            <div class="legend__row"><span class="dot dot--pointB"></span> Куда</div>
+            <div class="legend__row"><span class="dot dot--pier"></span> Причалы</div>
+            <div class="legend__row"><span class="dot dot--route"></span> Речной маршрут</div>
+            <div class="legend__row"><span class="dot dot--busRoad"></span> Автобусный маршрут</div>
+            <div class="legend__row"><span class="dot dot--busLeg"></span> Пешком до остановки или причала</div>
+            <div class="legend__row"><span class="dot dot--stop"></span> Остановки</div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          Речной транспорт — по расписанию mos.ru (07:00–23:00, интервал 15–30 мин). Автобусы — оценка интервала.
+        </div>
+        <div class="footer__right">Проект: Re:Bus</div>
+      </footer>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="./data.js"></script>
+    <script src="./river-paths.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
